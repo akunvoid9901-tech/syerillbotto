@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kotak Curhat Positif</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+    }
+
+    .container{
+      background:white;
+      padding:30px;
+      border-radius:20px;
+      width:80%;
+      max-width:600px;
+      text-align:center;
+      box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    h1{
+      color:#2c3e50;
+    }
+
+    textarea{
+      width:100%;
+      height:150px;
+      padding:15px;
+      border-radius:10px;
+      border:2px solid #74b9ff;
+      font-size:16px;
+      resize:none;
+      outline:none;
+    }
+
+    .hasil{
+      margin-top:20px;
+      padding:15px;
+      min-height:80px;
+      border-radius:10px;
+      background:#f1f2f6;
+      text-align:left;
+      font-size:18px;
+      line-height:1.8;
+    }
+
+    .glow{
+      color:#00b894;
+      font-weight:bold;
+      text-shadow:
+        0 0 5px #00ffcc,
+        0 0 10px #00ffcc,
+        0 0 20px #00ffcc;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Kotak Curhat Positif ✨</h1>
+
+  <textarea id="inputText"
+    placeholder="Tulis kekhawatiranmu di sini...">
+  </textarea>
+
+  <div class="hasil" id="outputText"></div>
+</div>
+
+<script>
+  const input = document.getElementById("inputText");
+  const output = document.getElementById("outputText");
+
+  const kataPositif = {
+    "gagal": "sukses",
+    "takut": "berani",
+    "bodoh": "pintar",
+    "sedih": "bahagia",
+    "malas": "semangat"
+  };
+
+  input.addEventListener("input", () => {
+    let text = input.value;
+
+    for (let kata in kataPositif) {
+      let regex = new RegExp(kata, "gi");
+
+      text = text.replace(regex, 
+        `<span class="glow">${kataPositif[kata]}</span>`
+      );
+    }
+
+    output.innerHTML = text;
+  });
+</script>
+
+</body>
+</html>
